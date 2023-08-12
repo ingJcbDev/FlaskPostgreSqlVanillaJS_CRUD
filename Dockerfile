@@ -1,7 +1,7 @@
 # inicio python
 
 # Python base image
-FROM python:3.7-alpine
+FROM python:3.11-alpine
 
 # Set the working directory
 WORKDIR /code
@@ -9,6 +9,9 @@ WORKDIR /code
 # Flask environment variables
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
+
+# Update pip to the latest version
+RUN pip install --no-cache-dir --upgrade pip
 
 # Install required packages
 RUN apk add --no-cache gcc musl-dev linux-headers
@@ -24,5 +27,3 @@ COPY . .
 CMD ["flask", "run", "--host=0.0.0.0"]
 
 # Fin python
-
-
